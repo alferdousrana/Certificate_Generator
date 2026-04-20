@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IKON Skills Certificate Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="controls">
+      <h1>Certificate Generator</h1>
+      <p class="panel-note">Pure HTML + CSS + JS layout. No background certificate image used.</p>
+
+      <div class="field-group">
+        <label for="studentName">Student Name</label>
+        <input id="studentName" type="text" placeholder="Alexandra Reyes" value="Alexandra Reyes" />
+      </div>
+
+      <div class="field-group">
+        <label for="courseName">Course Name</label>
+        <input id="courseName" type="text" placeholder="AI Prompt Engineer" value="AI Prompt Engineer" />
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="issueDate">Issue Date</label>
+          <input id="issueDate" type="text" placeholder="05 April 2026" value="05 April 2026" />
+        </div>
+
+        <div class="field-group">
+          <label for="certificateId">Certificate ID</label>
+          <input id="certificateId" type="text" placeholder="IKSC-2026-00142" value="IKSC-2026-00142" />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="categoryName">Category</label>
+        <input id="categoryName" type="text" value="ARTIFICIAL INTELLIGENCE & TECHNOLOGY" />
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="credits">Credits / Note 1</label>
+          <input id="credits" type="text" value="10 ECTS" />
+        </div>
+
+        <div class="field-group">
+          <label for="competency">Note 2</label>
+          <input id="competency" type="text" value="Competency Verified" />
+        </div>
+
+        <div class="field-group">
+          <label for="statusAwarded">Note 3</label>
+          <input id="statusAwarded" type="text" value="IKON Practitioner Status Awarded" />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="verifyText">Verification Text</label>
+        <input id="verifyText" type="text" value="Scan to verify · ikonskills.ac" />
+      </div>
+
+      <div class="field-group">
+        <label for="qrUpload">Upload QR / Scanner</label>
+        <input id="qrUpload" type="file" accept="image/*" />
+      </div>
+
+      <div class="field-group">
+        <label for="signatureUpload">Upload Signature</label>
+        <input id="signatureUpload" type="file" accept="image/*" />
+      </div>
+
+      <div class="field-group">
+        <label for="sealUpload">Upload Seal</label>
+        <input id="sealUpload" type="file" accept="image/*" />
+      </div>
+
+      <div class="field-group">
+        <label for="topRightLogoUpload">Upload Top Right Logo</label>
+        <input id="topRightLogoUpload" type="file" accept="image/*" />
+      </div>
+
+      <div class="btn-row">
+        <button id="printBtn" type="button">Print / Save PDF</button>
+        <button id="resetBtn" type="button" class="secondary">Reset Demo Data</button>
+      </div>
+    </aside>
+
+    <main class="preview-wrap">
+      <section class="certificate-shell">
+        <div id="certificate" class="certificate">
+          <div class="gold-frame gold-frame-outer"></div>
+          <div class="gold-frame gold-frame-inner"></div>
+
+          <div class="corner top-left">
+            <span class="ribbon ribbon-a"></span>
+            <span class="ribbon ribbon-b"></span>
+          </div>
+
+          <div class="corner bottom-right">
+            <span class="ribbon ribbon-a"></span>
+            <span class="ribbon ribbon-b"></span>
+          </div>
+
+          <header class="topbar">
+            <div class="brand-left">
+              <div class="brand-title"><span class="ikon-red">IKON</span> <span class="ikon-blue">SKILLS™</span></div>
+              <div class="brand-sub">Micro-Credential Platform · ikonskills.ac</div>
+            </div>
+
+            <div class="brand-right">
+              <img id="topRightLogoImg" alt="University Logo" />
+              <div id="topRightLogoFallback" class="brand-right-fallback">
+                <div class="qa-text">QUALITY ASSURED BY</div>
+                <div class="uni-box">
+                  <div class="uni-mark"></div>
+                  <div class="uni-name">EUROPEAN<br />INTERNATIONAL<br />UNIVERSITY</div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <div class="thin-line"></div>
+
+          <section class="hero">
+            <div class="center-title">IKON SKILLS™</div>
+            <div class="category-pill" id="categoryOutput">ARTIFICIAL INTELLIGENCE & TECHNOLOGY</div>
+            <div class="certifies-text">THIS CERTIFIES THAT</div>
+
+            <div class="name-line">
+              <h2 id="studentNameOutput">Alexandra Reyes</h2>
+            </div>
+
+            <div class="completion-text">HAS COMPLETED THE MICRO-CREDENTIAL</div>
+
+            <div class="course-line">
+              <h3 id="courseNameOutput">AI Prompt Engineer</h3>
+            </div>
+
+            <div class="meta-notes">
+              <span id="creditsOutput">10 ECTS</span>
+              <span class="sep">•</span>
+              <span id="competencyOutput">Competency Verified</span>
+              <span class="sep">•</span>
+              <span id="statusAwardedOutput">IKON Practitioner Status Awarded</span>
+            </div>
+          </section>
+
+          <div class="section-line"></div>
+
+          <section class="issue-row">
+            <div class="issue-text">
+              <span>Issued: <strong id="issueDateOutput">05 April 2026</strong></span>
+              <span class="pipe">|</span>
+              <span>Certificate ID: <strong id="certificateIdOutput">IKSC-2026-00142</strong></span>
+            </div>
+          </section>
+
+          <section class="qr-section">
+            <div class="qr-frame">
+              <img id="qrImg" alt="QR Code" />
+              <div id="qrPlaceholder" class="qr-placeholder">
+                <div class="qr-grid"></div>
+              </div>
+            </div>
+            <div class="verify-text" id="verifyTextOutput">Scan to verify · ikonskills.ac</div>
+          </section>
+
+          <div class="section-line tight"></div>
+
+          <section class="assured-block">
+            <div class="quality-text">Quality Assured by</div>
+            <div class="university-name">European International University, Paris</div>
+            <div class="assurance-meta">
+              <span>www.eiu.ac</span>
+              <span>•</span>
+              <span>France MOE Approved</span>
+              <span>•</span>
+              <span>UAI 0756213A</span>
+            </div>
+            <div class="tiny-divider"></div>
+            <div class="rankings">
+              <span>ACBSP Accredited</span>
+              <span>•</span>
+              <span>QS Star 5/5</span>
+              <span>•</span>
+              <span>ASIC Premier Institution</span>
+              <span>•</span>
+              <span>The BrandLaureate BEST BRAND 2025</span>
+              <span>•</span>
+              <span>CEOWORLD MAGAZINE RANK #50 2025</span>
+            </div>
+          </section>
+
+          <div class="section-line lower"></div>
+
+          <section class="footer-area">
+            <div class="signature-block">
+              <div class="signature-box">
+                <img id="signatureImg" alt="Signature" />
+                <div id="signaturePlaceholder" class="signature-placeholder">
+                  <svg viewBox="0 0 360 110" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M18 70 C40 20, 80 95, 108 44 S170 34, 186 70 214 95, 242 60 286 18, 304 56 332 86, 344 64" />
+                    <path d="M16 80 C54 82, 72 78, 98 90" />
+                    <path d="M110 82 C154 48, 176 102, 220 66" />
+                  </svg>
+                </div>
+              </div>
+              <div class="sign-line"></div>
+              <div class="sign-name">Prof. Dr. Edward Roy Krishnan</div>
+              <div class="sign-role">Founder & CEO, IKON Educational & Psychological Consultancy</div>
+              <div class="sign-role">Founder & Director General, European International University, Paris</div>
+            </div>
+
+            <div class="seal-block">
+              <img id="sealImg" alt="Seal" />
+              <div id="sealPlaceholder" class="seal-placeholder">
+                <div class="seal-inner">
+                  <div class="seal-center">SEAL</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="bottom-marker"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
